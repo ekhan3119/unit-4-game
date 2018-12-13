@@ -1,38 +1,45 @@
-// design each character with 3 properties hp, ap,cap
-var char1 = {healthpoint:180, attack_power:2, counter_attack_power:2, is_player: false};
-var char2 = {healthpoint:150, attack_power:4, counter_attack_power:4, is_player: false};
-var char3 = {healthpoint:120, attack_power:6, counter_attack_power:6, is_player: false };
-var char4 = {healthpoint:100, attack_power:8, counter_attack_power:8, is_player: false};
-//define array of 4 objets
-var characters = new Array[char1, char2,char3,char4];
-//write function to choose player
+//declare variables
+var startingNumber;
+var crystalValues;
+var wins = 0;
+var losses = 0;
+var totalScore = 0;
+//generating random number for crystals
+var randomNumber = Math.floor((Math.random()* 12)+ 1);
 
-function choosePlayer (player) { 
-    if (player.id == "btn1"){
-        char1.is_player= true ;
-        //alert("You are first player!"+ char1.is_player);
-        document.getElementById("player").innerHTML= "You are first player!";
+
+//when page load generate a random number between 19-120
+$(document).ready (function(){
+    console.log ('I am working')
+function startGame(){
+    startingNumber = Math.floor((Math.random()* 120)+ 19);
+    $("#random").text("Match this number: " + startingNumber);
+    
+    //update wins, losses, totalScore 
+    $("#wins").text("Wins: "+ wins);
+    $("#losses").text("Losses: "+ loses);
+    $("#your-score").text("Your total score: "+ totalScore);
+
+    //Generate a random number for each crystals
+    newRandomNumber("#diamond");
+    newRandomNumber("#red-heart");
+    newRandomNumber("#orange-octagon");
+    newRandomNumber("#green-cube");
+}
+
+function crystalRandomNumber(id){
+    for (i = 0; i< 4; i++){
+    randomNumber = Math.floor((Math.random()* 12)+ 1);
     }
-    else if (player.id == "btn2"){
-        char2.is_player= true ;
-        //alert("You are second player!"+ char2.is_player);
-        document.getElementById("player").innerHTML= "You are second player!";
-    }
-    else if (player.id == "btn3"){
-        char3.is_player= true ;
-        //alert("You are third player!"+ char3.is_player);
-        document.getElementById("player").innerHTML= "You are second player!";
-    }
-    else if (player.id == "btn4"){
-        char4.is_player= true ;
-        //alert("You are forth player!"+ char4.is_player);
-        document.getElementById("player").innerHTML= "You are second player!";
-    }
-//alert("I am a button");
-    //return p1 ;    
-  };
+$("#blue-diamond").att("value", randomNumber);
+}
+function whenGmaeStart(){
+    $(".diamond").on("click",crystalRandomNumber);
+}
+startGame();
+whenGmaeStar();
 
+//$("#random").load(Math.floor((Math.random()* 120)+ 19));
+//$("#random").text(startingNumber);
 
-  
-
-
+});
