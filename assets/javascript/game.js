@@ -10,13 +10,13 @@ var totalScore = 0;
 $(document).ready (function(){
         console.log ('I am working')
     function startGame(){
-        startingNumber = Math.floor((Math.random()* 101)+ 19);
+        startingNumber = Math.floor((Math.random()* 102)+ 19);
         $("#random").text("Match this number: " + startingNumber);
         
         //update wins, losses, totalScore 
-        $("#wins").text("Wins: "+ wins);
-        $("#losses").text("Losses: "+ losses);
-        $("#your-score").text("Your total score: "+ totalScore);
+        //$("#wins").text("Wins: "+ wins);
+        //$("#losses").text("Losses: "+ losses);
+        //$("#your-score").text("Your total score: "+ totalScore);
         crystalRandomNumber("#blue-diamond");
         crystalRandomNumber("#red-heart");
         crystalRandomNumber("#orange-octagon");
@@ -27,32 +27,47 @@ $(document).ready (function(){
         
     //function to get random number for crystals
     function crystalRandomNumber(id){
-        var randomNumber= Math.floor(Math.random() * 11+1);
+        var randomNumber= Math.floor((Math.random() * 12)+1);
     //generate a random num 
         $(id).attr("data-value", randomNumber);
     //assign that num with that id
     }
     //click event for crystals
     $(".crystal").on("click", function (){
-        console.log("clicked");
+        //console.log("clicked");
         var crystalValue = $(this).data("value");
         console.log(crystalValue);
         totalScore += crystalValue;
+        $("#your-score").text("Your total score: "+ totalScore);
         if (totalScore === startingNumber){
             wins++;
+            $("#wins").text("Wins: "+ wins);
             reset();
-            //$("#wins").text()
-        } else { totalScore > startingNumber 
+           
+        } else if (totalScore > startingNumber) {
             losses++;
+            $("#losses").text("Losses: "+ losses);
+            //console.log('you lost');
+    
             reset();
         }
         
     });
+    
+    
 
     function reset(){
         totalScore = 0;
-        startingNumber;
-        //crystalValue;
+        $("#your-score").text("Your total score: "+ totalScore);
+        crystalRandomNumber("#blue-diamond");
+        crystalRandomNumber("#red-heart");
+        crystalRandomNumber("#orange-octagon");
+        crystalRandomNumber("#green-cube");
+        startingNumber = Math.floor((Math.random()* 102)+ 19);
+        $("#random").text("Match this number: " + startingNumber);
+
+        
+
     };
         //retrive the value for that crystal
         //add that to their total score

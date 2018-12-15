@@ -1,7 +1,12 @@
+body{
+    background: url('../images/crystal-background.jpeg');
+}
+
+
 nav{
  width: 30%;
 }    
 
-img .diamond{
+/* img .diamond{
     box-sizing: 200px;
-}
+} */
